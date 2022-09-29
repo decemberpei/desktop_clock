@@ -25,7 +25,7 @@ namespace Clock2
                           Screen.PrimaryScreen.WorkingArea.Height - this.Height);
 
             DateTime now = System.DateTime.Now;
-            txt_clock.Text = now.Hour + ":" + now.Minute + ":" + now.Second;
+            txt_clock.Text = now.ToString("HH:mm:ss");
 
             Thread work_thread = new Thread(worker);
             work_thread.Start();
@@ -38,8 +38,8 @@ namespace Clock2
                 Thread.Sleep(1000);
                 if (mRunning)
                 {
-                    DateTime now = System.DateTime.Now;
-                    txt_clock.Invoke(new MethodInvoker(delegate { txt_clock.Text = now.Hour + ":" + now.Minute + ":" + now.Second; }));
+                    DateTime now = DateTime.Now;
+                    txt_clock.Invoke(new MethodInvoker(delegate { txt_clock.Text = now.ToString("HH:mm:ss"); }));
                 }
             }
         }
