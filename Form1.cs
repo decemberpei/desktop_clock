@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,6 +15,9 @@ namespace Clock2
 {
     public partial class Clock : Form
     {
+        [DllImport("user32.dll")]
+        static extern IntPtr GetForegroundWindow();
+
         private bool mRunning = true;
         public Clock()
         {
@@ -39,7 +43,15 @@ namespace Clock2
                 if (mRunning)
                 {
                     DateTime now = DateTime.Now;
-                    txt_clock.Invoke(new MethodInvoker(delegate { txt_clock.Text = now.ToString("HH:mm:ss"); }));
+                    txt_clock.Invoke(new MethodInvoker(delegate 
+                    { 
+                        txt_clock.Text = now.ToString("HH:mm:ss");
+                        if (GetForegroundWindow() != Handle)
+                        {
+                            this.BringToFront();
+                        }
+                    }
+                    ));
                 }
             }
         }
