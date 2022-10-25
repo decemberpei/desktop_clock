@@ -23,10 +23,10 @@ namespace Clock2
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.Manual;
-            /*this.Location = new Point(Screen.PrimaryScreen.Bounds.Width - this.Width,
-                          Screen.PrimaryScreen.Bounds.Height - this.Height);*/
-            this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - this.Width,
-                          Screen.PrimaryScreen.WorkingArea.Height - this.Height);
+            this.Location = new Point(Screen.PrimaryScreen.Bounds.Width - this.Width,
+                          Screen.PrimaryScreen.Bounds.Height - this.Height);
+            /*this.Location = new Point(Screen.PrimaryScreen.WorkingArea.Width - this.Width,
+                          Screen.PrimaryScreen.WorkingArea.Height - this.Height);*/
 
             DateTime now = System.DateTime.Now;
             txt_clock.Text = now.ToString("HH:mm:ss");
